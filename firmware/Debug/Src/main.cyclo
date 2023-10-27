@@ -1,3 +1,2 @@
 ../Src/main.c:29:6:systemClockSetup	5
-../Src/main.c:78:6:ltdcSetup	1
-../Src/main.c:109:5:main	1
+../Src/main.c:78:5:main	1

@@ -1,2 +1,0 @@
-../Src/bsp_lcd.c:66:13:_initLtdcPins	16	static
-../Src/bsp_lcd.c:88:6:BSP_initDisplay	8	static

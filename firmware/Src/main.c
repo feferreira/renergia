@@ -75,41 +75,10 @@ void systemClockSetup()
 }
 
 
-void ltdcSetup()
-{
-	RCC_TypeDef *rcc = RCC;
-	LTDC_TypeDef *ltdc = LTDC;
-	REG_SET_BIT(rcc->APB2ENR, RCC_APB2ENR_LTDCEN_Pos);
-	//width in pixclock
-	REG_SET_VAL(ltdc->SSCR, BSP_LCD_HSYNC_WIDTH-1, 0xFFFU, LTDC_SSCR_HSW_Pos);
-	REG_SET_VAL(ltdc->SSCR, BSP_LCD_VSYNC_WIDTH-1, 0x7FFU, LTDC_SSCR_VSH_Pos);
-	//back porch
-	REG_SET_VAL(ltdc->BPCR, BSP_LCD_HSYNC_WIDTH+BSP_LCD_HSYNC_BP-1,0xFFFU,LTDC_BPCR_AHBP_Pos);
-	REG_SET_VAL(ltdc->BPCR, BSP_LCD_VSYNC_WIDTH+BSP_LCD_VSYNC_BP-1,0x7FFU,LTDC_BPCR_AVBP_Pos);
-	//active width
-	REG_SET_VAL(ltdc->AWCR, BSP_LCD_HSYNC_WIDTH+BSP_LCD_HSYNC_BP+BSP_LCD_HSYNC_ADD-1, 0xFFFU,LTDC_AWCR_AAH_Pos);
-	REG_SET_VAL(ltdc->AWCR, BSP_LCD_VSYNC_WIDTH+BSP_LCD_VSYNC_BP+BSP_LCD_VSYNC_ADD-1, 0x7FFU,LTDC_AWCR_AAW_Pos);
-	//total width
-	REG_SET_VAL(ltdc->TWCR, BSP_LCD_HSYNC_WIDTH+BSP_LCD_HSYNC_BP+BSP_LCD_HSYNC_ADD+BSP_LCD_HSYNC_FP-1, 0xFFFU,LTDC_TWCR_TOTALH_Pos);
-	REG_SET_VAL(ltdc->TWCR, BSP_LCD_VSYNC_WIDTH+BSP_LCD_VSYNC_BP+BSP_LCD_VSYNC_ADD+BSP_LCD_VSYNC_FP-1, 0x7FFU,LTDC_TWCR_TOTALW_Pos);
-
-	//background color
-	REG_SET_VAL(ltdc->BCCR, 0xFF, 0xFFUL, LTDC_BCCR_BCRED_Pos);
-	REG_SET_VAL(ltdc->BCCR, 0, 0xFFUL, LTDC_BCCR_BCBLUE_Pos);
-	REG_SET_VAL(ltdc->BCCR, 0, 0xFFUL, LTDC_BCCR_BCGREEN_Pos);
-
-	// set polarization
-
-
-	//enable peripheral
-	REG_SET_BIT(ltdc->GCR, LTDC_GCR_LTDCEN_Pos);
-}
-
-
 int main(void)
 {
 	systemClockSetup();
-	ltdcSetup();
+	BSP_initDisplay();
     /* Loop forever */
 	for(;;);
 }
