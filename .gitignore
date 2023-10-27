@@ -2,3 +2,4 @@
 *.elf
 *.list
 *.map
+*/Debug
