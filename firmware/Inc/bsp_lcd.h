@@ -7,12 +7,34 @@
 #define BSP_LCD_HSYNC_ADD 240
 #define BSP_LCD_HSYNC_FP 10
 
+#define BSP_LCD_WIDTH  		240
+#define BSP_LCD_HEIGHT 		320
+
+#define PORTRAIT  0
+#define LANDSCAPE 1
+#define BSP_LCD_ORIENTATION   PORTRAIT
+
+#if(BSP_LCD_ORIENTATION == PORTRAIT)
+	#define  BSP_LCD_ACTIVE_WIDTH 			BSP_LCD_WIDTH
+	#define  BSP_LCD_ACTIVE_HEIGHT  		BSP_LCD_HEIGHT
+#elif(BSP_LCD_ORIENTATION == LANDSCAPE)
+	#define  BSP_LCD_ACTIVE_WIDTH 			BSP_LCD_HEIGHT
+	#define  BSP_LCD_ACTIVE_HEIGHT 			BSP_LCD_WIDTH
+#endif
+
 #define BSP_LCD_VSYNC_WIDTH 2 //line
 #define BSP_LCD_VSYNC_BP 2 //line
 #define BSP_LCD_VSYNC_ADD 320
 #define BSP_LCD_VSYNC_FP 4 //line
 
 
+
+#define BSP_LCD_HSW 		10
+#define BSP_LCD_HBP			20
+#define BSP_LCD_HFP			10
+#define BSP_LCD_VSW			2
+#define BSP_LCD_VBP			2
+#define BSP_LCD_VFP			4
 
 
 #define GPIO_PIN_0 0U
